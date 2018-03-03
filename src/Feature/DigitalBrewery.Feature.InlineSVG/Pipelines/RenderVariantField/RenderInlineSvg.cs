@@ -36,30 +36,33 @@ namespace DigitalBrewery.Feature.InlineSVG.Pipelines.RenderVariantField
             Sitecore.XA.Foundation.RenderingVariants.Fields.VariantField variantField = args.VariantField as Sitecore.XA.Foundation.RenderingVariants.Fields.VariantField;
             if (variantField == null)
                 return;
-
-            FileField mediaField = args.Item.Fields[variantField.ItemName];
-            if (mediaField == null)
+            
+            FileField fileField = args.Item.Fields[variantField.ItemName];
+            // If not a file field, continue with normal processing
+            if (fileField == null)
             {
                 base.RenderField(args);
                 return;
             }
-            MediaItem mediaItem = mediaField.MediaItem;
+            
+            MediaItem mediaItem = fileField.MediaItem;
+            // Get media item from file field, check for svg
             if (mediaItem == null || mediaItem.Extension != "svg")
             {
                 base.RenderField(args);
                 return;
             }
 
-            args.ResultControl = (Control) new LiteralControl()
+            args.ResultControl = new LiteralControl()
             {
-                Text = GenerateSVGHtml(mediaItem)
+                Text = GenerateSvgHtml(mediaItem)
             };
             args.Result = RenderControl(args.ResultControl);
         }
 
-
-        protected virtual string GenerateSVGHtml(MediaItem svgItem)
+        protected virtual string GenerateSvgHtml(MediaItem svgItem)
         {
+            // Svg is an xml file, so it can be read like any other text file.
             using (StreamReader reader = new StreamReader(svgItem.GetMediaStream()))
             {
                 return reader.ReadToEnd();

@@ -14,7 +14,7 @@ namespace DigitalBrewery.Feature.Components.Pipelines.GetStyles
     {
         private readonly IPresentationContext PresentationContext;
         public readonly IContentRepository ContentRepository;
-        private static readonly ID SitecoreXaPresentationStylesTemplateId = new ID("C6DC7393-15BB-4CD7-B798-AB63E77EBAC4");
+        private static readonly ID StylesTemplateId = new ID("C6DC7393-15BB-4CD7-B798-AB63E77EBAC4");
 
         public GetStyles(IPresentationContext presentationContext, IContentRepository contentRepository)
         {
@@ -29,12 +29,14 @@ namespace DigitalBrewery.Feature.Components.Pipelines.GetStyles
 
             ItemUri renderingItemUri = new ItemUri(args.Rendering);
             
+            // Rendering represents component
             Item componentRendering = this.ContentRepository.GetItem(renderingItemUri.ItemID);
             
-            Item styles = componentRendering?.Children.FirstOrDefault(item => item.TemplateID.Equals(SitecoreXaPresentationStylesTemplateId));
+            // Get styles folder for the component
+            Item styles = componentRendering?.Children.FirstOrDefault(item => item.TemplateID.Equals(StylesTemplateId));
             if (styles == null)
                 return;
-
+            
             args.Styles.AddRange(styles.Children);
         }
     }
