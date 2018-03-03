@@ -215,7 +215,6 @@
     <Content Include="Views\Component\Item.cshtml" />
     <Content Include="Views\Component\List.cshtml" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
-    <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ComponentController.cs" />
@@ -230,12 +229,6 @@
   <ItemGroup>
     <None Include="Views\web.config" />
     <Content Include="packages.config" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Config\Include\Feature\" />
