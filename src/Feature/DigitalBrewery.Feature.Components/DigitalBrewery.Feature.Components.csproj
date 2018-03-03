@@ -141,8 +141,14 @@
     <Reference Include="Sitecore.XA.Foundation.MarkupDecorator">
       <HintPath>..\..\..\lib\Sitecore.XA.Foundation.MarkupDecorator.dll</HintPath>
     </Reference>
+    <Reference Include="Sitecore.XA.Foundation.Multisite">
+      <HintPath>..\Components\DigitalBrewery.Feature.Components\lib\Sitecore.XA.Foundation.Multisite.dll</HintPath>
+    </Reference>
     <Reference Include="Sitecore.XA.Foundation.Mvc">
       <HintPath>..\..\..\lib\Sitecore.XA.Foundation.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.XA.Foundation.Presentation">
+      <HintPath>..\Components\DigitalBrewery.Feature.Components\lib\Sitecore.XA.Foundation.Presentation.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.XA.Foundation.RenderingVariants">
       <HintPath>..\..\..\lib\Sitecore.XA.Foundation.RenderingVariants.dll</HintPath>
@@ -215,11 +221,14 @@
     <Content Include="Views\Component\Item.cshtml" />
     <Content Include="Views\Component\List.cshtml" />
     <Content Include="App_Config\Include\DependencyInjection\IoC.DigitalBrewery.Components.config" />
+    <Content Include="App_Config\Include\z.Pipelines\DigitalBrewery.Feature.Components.config" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ComponentController.cs" />
     <Compile Include="Controllers\ListController.cs" />
+    <Compile Include="Pipelines\GetStyles\GetStyles.cs" />
+    <Compile Include="Pipelines\GetVariants\GetComponentVariants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterDependencies.cs" />
     <Compile Include="Repositories\ComponentListRepository.cs" />
