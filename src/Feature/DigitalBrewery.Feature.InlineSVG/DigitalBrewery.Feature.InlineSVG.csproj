@@ -206,8 +206,6 @@
     <None Include="Properties\PublishProfiles\Local.pubxml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fields\InlineSvg.cs" />
-    <Compile Include="Pipelines\ParseVariantFields\ParseInlineSvg.cs" />
     <Compile Include="Pipelines\RenderVariantField\RenderInlineSvg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
