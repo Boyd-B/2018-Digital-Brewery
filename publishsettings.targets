@@ -1,12 +1,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-		<WebPublishMethod>FileSystem</WebPublishMethod>
-		<LastUsedBuildConfiguration>Debug</LastUsedBuildConfiguration>
-		<LastUsedPlatform>Any CPU</LastUsedPlatform>
-		<SiteUrlToLaunchAfterPublish />
-		<LaunchSiteAfterPublish>True</LaunchSiteAfterPublish>
-		<ExcludeApp_Data>False</ExcludeApp_Data>
-		<publishUrl>C:\inetpub\wwwroot\digitalb.sc</publishUrl>
-		<DeleteExistingFiles>False</DeleteExistingFiles>
-	</PropertyGroup>
+      <publishUrl>C:\inetpub\wwwroot\digitalb.sc</publishUrl>
+      <ExcludeFilesFromDeployment>packages.config</ExcludeFilesFromDeployment>
+    </PropertyGroup>
 </Project>
