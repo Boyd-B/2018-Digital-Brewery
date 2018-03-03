@@ -13,7 +13,7 @@ using Sitecore.XA.Foundation.Variants.Abstractions.Pipelines.RenderVariantField;
 
 namespace DigitalBrewery.Feature.InlineSVG.Pipelines.RenderVariantField
 {
-    public class RenderInlineSvg : RenderVariantFieldProcessor
+    public class RenderInlineSvg : Sitecore.XA.Foundation.RenderingVariants.Pipelines.RenderVariantField.RenderVariantField
     {
         public override Type SupportedType
         {
@@ -33,30 +33,37 @@ namespace DigitalBrewery.Feature.InlineSVG.Pipelines.RenderVariantField
 
         public override void RenderField(RenderVariantFieldArgs args)
         {
-
             Sitecore.XA.Foundation.RenderingVariants.Fields.VariantField variantField = args.VariantField as Sitecore.XA.Foundation.RenderingVariants.Fields.VariantField;
             if (variantField == null)
                 return;
 
-            args.ResultControl = (Control)new LiteralControl()
+            FileField mediaField = args.Item.Fields[variantField.ItemName];
+            if (mediaField == null)
             {
-                Text = GenerateSVGHtml(args)
+                base.RenderField(args);
+                return;
+            }
+            MediaItem mediaItem = mediaField.MediaItem;
+            if (mediaItem == null || mediaItem.Extension != "svg")
+            {
+                base.RenderField(args);
+                return;
+            }
+
+            args.ResultControl = (Control) new LiteralControl()
+            {
+                Text = GenerateSVGHtml(mediaItem)
             };
             args.Result = RenderControl(args.ResultControl);
         }
 
 
-        protected virtual string GenerateSVGHtml(RenderVariantFieldArgs args)
+        protected virtual string GenerateSVGHtml(MediaItem svgItem)
         {
-            FileField mediaField = args.Item.Fields[args.VariantField.ItemName];
-            if (mediaField == null)
-                return null;
-            MediaItem mediaItem = mediaField.MediaItem;
-            using (StreamReader reader = new StreamReader(mediaItem.GetMediaStream()))
+            using (StreamReader reader = new StreamReader(svgItem.GetMediaStream()))
             {
                 return reader.ReadToEnd();
             }
         }
-
     }
 }
