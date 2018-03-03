@@ -148,7 +148,7 @@
       <HintPath>..\..\..\lib\Sitecore.XA.Foundation.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.XA.Foundation.Presentation">
-      <HintPath>..\Components\DigitalBrewery.Feature.Components\lib\Sitecore.XA.Foundation.Presentation.dll</HintPath>
+      <HintPath>..\..\..\lib\Sitecore.XA.Foundation.Presentation.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.XA.Foundation.RenderingVariants">
       <HintPath>..\..\..\lib\Sitecore.XA.Foundation.RenderingVariants.dll</HintPath>

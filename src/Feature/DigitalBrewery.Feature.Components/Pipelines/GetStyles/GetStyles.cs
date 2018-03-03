@@ -1,6 +1,5 @@
 ﻿using Sitecore.Data;
 using Sitecore.Data.Items;
-using Sitecore.XA.Foundation.Multisite;
 using Sitecore.XA.Foundation.Presentation;
 using Sitecore.XA.Foundation.Presentation.Pipelines.GetStyles;
 using Sitecore.XA.Foundation.SitecoreExtensions.Repositories;
@@ -11,42 +10,11 @@ using System.Linq;
 
 namespace DigitalBrewery.Feature.Components.Pipelines.GetStyles
 {
-    //public class GetStyles : GetStylesProcessorBase
-    //{
-    //    private readonly ISharedSitesContext _sharedSiteContext;
-    //    private readonly IPresentationContext _presentationContext;
-    //    private readonly IMultisiteContext _multisiteContext;
-
-    //    public GetStyles(ISharedSitesContext sharedSiteContext, IPresentationContext presentationContext, IMultisiteContext multisiteContext)
-    //    {
-    //        this._sharedSiteContext = sharedSiteContext;
-    //        this._presentationContext = presentationContext;
-    //        this._multisiteContext = multisiteContext;
-    //    }
-
-    //    public void Process(GetStylesArgs args)
-    //    {
-    //        if (this._sharedSiteContext == null || this._presentationContext == null || this._multisiteContext == null)
-    //            return;
-    //        ItemUri renderingItemUri = new ItemUri(args.Rendering);
-    //        foreach (Item obj in this._sharedSiteContext.GetSharedSitesWithoutCurrent(args.ContextItem))
-    //        {
-    //            Item stylesItem = this._presentationContext.GetStylesItem(obj);
-    //            if (stylesItem != null)
-    //                args.Styles.AddRange((IEnumerable<Item>)((IEnumerable<Item>)stylesItem.Axes.GetDescendants()).Where<Item>((Func<Item, bool>)(i =>
-    //                {
-    //                    if (this.IsStyleItem(i))
-    //                        return this.IsAllowed(i, renderingItemUri);
-    //                    return false;
-    //                })).ToArray<Item>());
-    //        }
-    //    }
-    //}
-
     public class GetStyles : GetStylesProcessorBase
     {
         private readonly IPresentationContext PresentationContext;
         public readonly IContentRepository ContentRepository;
+        private static readonly ID SitecoreXaPresentationStylesTemplateId = new ID("C6DC7393-15BB-4CD7-B798-AB63E77EBAC4");
 
         public GetStyles(IPresentationContext presentationContext, IContentRepository contentRepository)
         {
@@ -60,25 +28,14 @@ namespace DigitalBrewery.Feature.Components.Pipelines.GetStyles
                 return;
 
             ItemUri renderingItemUri = new ItemUri(args.Rendering);
-
-            Item stylesItem = this.PresentationContext.GetStylesItem(args.ContextItem);
-            if (stylesItem == null)
+            
+            Item componentRendering = this.ContentRepository.GetItem(renderingItemUri.ItemID);
+            
+            Item styles = componentRendering?.Children.FirstOrDefault(item => item.TemplateID.Equals(SitecoreXaPresentationStylesTemplateId));
+            if (styles == null)
                 return;
 
-            Item obj1 = this.ContentRepository.GetItem(new Sitecore.Data.ID("34AAF817-5505-4549-BE92-C548D7AF2E9E"));
-
-            foreach(var item in obj1.Axes.GetDescendants())
-            {
-                if (this.IsStyleItem(item) )//&& this.IsAllowed(item, renderingItemUri))
-                    args.Styles.Add(item);
-            }
-
-            //args.Styles.AddRange((IEnumerable<Item>)((IEnumerable<Item>)obj1.Axes.GetDescendants()).Where<Item>((Func<Item, bool>)(i =>
-            //{
-            //    if (this.IsStyleItem(i))
-            //        return this.IsAllowed(i, renderingItemUri);
-            //    return false;
-            //})).ToArray<Item>());
+            args.Styles.AddRange(styles.Children);
         }
     }
 }
