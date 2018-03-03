@@ -1,0 +1,27 @@
+﻿@using Sitecore.Data.Items
+@using Sitecore.XA.Foundation.MarkupDecorator.Extensions
+@using Sitecore.XA.Foundation.SitecoreExtensions.Extensions
+@using Sitecore.XA.Foundation.RenderingVariants.Extensions
+@using Sitecore.XA.Foundation.Variants.Abstractions.Fields
+
+@model Sitecore.XA.Foundation.Variants.Abstractions.Models.VariantsRenderingModel
+@{
+    Item dataSource = Model.DataSourceItem ?? Model.PageItem;
+}
+@if (dataSource != null || Html.Sxa().IsEdit)
+{
+    <div @Html.Sxa().Component(Model.Rendering.Name.ToLower().Replace(" ", "-"), Model.Attributes)>
+        @if (dataSource == null)
+        {
+            @Model.MessageIsEmpty
+        }
+        else
+        {
+            foreach (BaseVariantField variantField in Model.VariantFields)
+            {
+                @Html.RenderingVariants().RenderVariant(variantField, dataSource, Model.RenderingWebEditingParams)
+            }
+        }
+        <marquee>her's yo item rendering</marquee>
+    </div>
+}
