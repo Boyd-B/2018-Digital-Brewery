@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using Sitecore.XA.Foundation.RenderingVariants.Controllers;
+using Sitecore.XA.Foundation.RenderingVariants.Repositories;
 using DigitalBrewery.Feature.Components.Repositories;
 
 namespace DigitalBrewery.Feature.Components.Controllers

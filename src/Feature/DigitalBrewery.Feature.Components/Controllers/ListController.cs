@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using Sitecore.XA.Feature.PageContent.Controllers;
+using Sitecore.XA.Feature.PageContent.Repositories;
 using DigitalBrewery.Feature.Components.Repositories;
 
 namespace DigitalBrewery.Feature.Components.Controllers
