@@ -214,6 +214,7 @@
     <Content Include="Properties\PublishProfiles\Local.pubxml.user" />
     <Content Include="Views\Component\Item.cshtml" />
     <Content Include="Views\Component\List.cshtml" />
+    <Content Include="App_Config\Include\DependencyInjection\IoC.DigitalBrewery.Components.config" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
   </ItemGroup>
   <ItemGroup>
