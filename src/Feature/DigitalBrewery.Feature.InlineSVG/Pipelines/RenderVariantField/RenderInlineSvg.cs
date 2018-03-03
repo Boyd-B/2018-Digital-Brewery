@@ -15,21 +15,9 @@ namespace DigitalBrewery.Feature.InlineSVG.Pipelines.RenderVariantField
 {
     public class RenderInlineSvg : Sitecore.XA.Foundation.RenderingVariants.Pipelines.RenderVariantField.RenderVariantField
     {
-        public override Type SupportedType
-        {
-            get
-            {
-                return typeof(Sitecore.XA.Foundation.RenderingVariants.Fields.VariantField);
-            }
-        }
+        public override Type SupportedType => typeof(Sitecore.XA.Foundation.RenderingVariants.Fields.VariantField);
 
-        public override RendererMode RendererMode
-        {
-            get
-            {
-                return RendererMode.Html;
-            }
-        }
+        public override RendererMode RendererMode => RendererMode.Html;
 
         public override void RenderField(RenderVariantFieldArgs args)
         {
