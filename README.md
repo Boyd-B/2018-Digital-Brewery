@@ -1,38 +1,23 @@
-![Hackathon Logo](documentation/images/hackathon.png?raw=true "Hackathon Logo")
+## Summary
 
-# Submission Boilerplate
+### Category: SXA
 
-Welcome to Sitecore Hackathon 2018.
+#### Module Purpose
+SXA is a powerful new feature of Sitecore that helps speed up the creation of websites by providing reusable components, layouts, and templates.  However, the prebuilt components don’t always meet the users’ needs, so they must create their own custom component instead.  This is where SXA becomes a little more complicated.  Many new items and settings must be created in various locations within the content tree to create a single component.  The varied locations of these items make their creation and maintenance difficult.  Our module automates many of these steps and reorganizes the content tree so that item locations and related settings are in more intuitive locations.  We’ve accomplished this by adding several buttons to the home tab and creating a few custom components of our own.
 
-The Hackathon site can be found at http://www.sitecorehackathon.org/sitecore-hackathon-2018/
+#### Pre-Requisites
+* Sitecore Experience Accelerator 1.6
+* Sitecore PowerShell 4.7.2 (This is a pre-requisite of the Sitecore Experience Accelerator 1.6)
 
-This purpose of repository is to provide a sample which shows how to structure the Hackathon submissions. We highly recommend
+#### Item Component
+The Item Component greatly simplifies the process of custom component creation. A user can right-click on the Components folder located under the Presentation item in the Tenant Site and select Insert. The user then selects the Item Component from the insert options. A PowerShell script creates the component and also creates a rendering variant folder, a default variant, and a style folder as child items of the component.  This makes future maintenance easy as all items are in one easy to find location.  After creating the new component, the user will need to add fields to the default rendering variant and assign the component to the available rendering for the SXA toolbox.
 
+![Item Component](documentation/images/AddItemComponent.png?raw=true "Item Component")
 
-## Entry Submission Requirements 
+#### Create JS/Sass
+The “Create JS” and “Create Sass” buttons greatly simplify the process of creating new JavaScript and Sass files.  Clicking either of the buttons runs a PowerShell script which prompts the user to choose the theme to which to add the file to. The user is then prompted to enter a name for the new file.
 
-All teams are required to submit the following as part of their entry submission on or before the end of the Hackathon on **Saturday March 3rd 2018 at 8PM EST**. The modules should be based on [Sitecore 9.0 rev. 171219 (Update-1)](https://dev.sitecore.net/Downloads/Sitecore_Experience_Platform/90/Sitecore_Experience_Platform_90_Update1.aspx).
+![Create Assets](documentation/images/CreateAssets.png?raw=true "Create Assets")
 
-**Failure to meet any of the requirements will result in automatic disqualification.** Please reach out to any of the organisers or judges if you require any clarification.
-
-- Sitecore 9.0 Update 1 Module (Module install package)
-   - An installation Sitecore Package (`.zip` or `.update`)
-
-- Module code in a public Git source repository. We will be judging (amongst other things):
-  - Cleanliness of code
-  - Commenting where necessary
-  - Code Structure
-  - Standard coding standards & naming conventions
-
-- Precise and Clear Installation Instructions document (1 – 2 pages)
-- Module usage documentation on [Readme.md](documentation) file on the Git Repository (2 – 5 pages)
-  - Module Purpose
-  - Module Sitecore Hackathon Category
-  - How does the end user use the Module?
-  - Screenshots, etc.
-
-- Create a 2 – 10 minutes video explaining the module’s functionality (A link to youtube video)
-
-  - What problem was solved
-  - How did you solve it
-  - What is the end result
+#### Inline SVGs
+Our Inline SVG component brings true SVG functionality to the Experience Editor.  This allows the experience editor to more accurately portray how styling will affect SVG images.
