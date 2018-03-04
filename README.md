@@ -1,6 +1,7 @@
 ## Summary
 
 ### Category: SXA
+[Video](https://youtu.be/DWhDZPbm2xU)
 
 #### Module Purpose
 SXA is a powerful new feature of Sitecore that helps speed up the creation of websites by providing reusable components, layouts, and templates.  However, the prebuilt components don’t always meet the users’ needs, so they must create their own custom component instead.  This is where SXA becomes a little more complicated.  Many new items and settings must be created in various locations within the content tree to create a single component.  The varied locations of these items make their creation and maintenance difficult.  Our module automates many of these steps and reorganizes the content tree so that item locations and related settings are in more intuitive locations.  We’ve accomplished this by adding several buttons to the home tab and creating a few custom components of our own.
